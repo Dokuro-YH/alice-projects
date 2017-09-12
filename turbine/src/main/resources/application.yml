@@ -1,0 +1,30 @@
+info.description: Hystrix Turbine
+
+server:
+  port: 8989
+
+management:
+  port: 8990
+  security:
+    enabled: false
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    non-secure-port: 8989
+    metadata-map:
+      management.port: 8990
+  client:
+    registryFetchIntervalSeconds: 5
+
+logging:
+  level:
+    com.netflix.discovery: 'OFF'

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>授权</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div class="mx-auto" style="max-width:530px;">
+    <div class="box shadow">
+        <div class="box-body p-3 clearfix">
+            <div class="col-sm-12">
+                <p class="text-center">
+                    <strong sec:authentication="name"></strong>
+                    to
+                    <strong th:text="${authorizationRequest.clientId}"></strong>
+                </p>
+            </div>
+        </div>
+        <div class="box-footer p-3 clearfix">
+            <div class="col-sm-12">
+                <form id="confirmationForm" name="confirmationForm"
+                      th:action="@{/oauth/authorize}" method="post">
+                    <th:block th:each="scope : ${authorizationRequest.scope}">
+                        <input th:name="${'scope.' + scope}" value="true" type="hidden"/>
+                    </th:block>
+                    <input name="user_oauth_approval" value="true" type="hidden"/>
+                    <button class="btn btn-primary width-full" type="submit">授权</button>
+                </form>
+            </div>
+            <div class="col-sm-12 mt-2">
+                <p class="text-center text-small text-gray">
+                    授权成功跳转到
+                    <br/>
+                    <strong class="text-gray-dark" th:text="${authorizationRequest.redirectUri}"></strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+info.description: UI
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types:
+    - application/json
+    - application/xml
+    - text/html
+    - text/xml
+    - text/plain
+    - text/css
+
+management:
+  security:
+    enabled: false
+
+endpoints:
+  health:
+    sensitive: false
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+  client:
+    registryFetchIntervalSeconds: 5
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ServerListRefreshInterval: 5000
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+zuul:
+  ribbon-isolation-strategy: thread
+  prefix: /api
+  ignored-services: '*'
+  add-host-header: true
+  ignored-patterns: /**/mgmt/**
+  routes:
+    me:
+      url: http://${AUTHSERVER_HOST:localhost}:${AUTHSERVER_PORT:9000}/uaa/me
+    hello:
+      path: /hello/**
+    employee:
+      path: /employee/**
+      stripPrefix: false
+
+security:
+  user:
+   password: none
+  oauth2:
+    client:
+      clientId: ui
+      clientSecret: uisecret
+      accessTokenUri: http://${AUTHSERVER_HOST:localhost}:${AUTHSERVER_PORT:9000}/uaa/oauth/token
+      userAuthorizationUri: http://${AUTHSERVER_HOST:localhost}:${AUTHSERVER_PORT:9000}/uaa/oauth/authorize
+    resource:
+      userInfoUri: http://${AUTHSERVER_HOST:localhost}:${AUTHSERVER_PORT:9000}/uaa/me
+
+spring:
+  rabbitmq:
+    addresses: amqp://${RABBITMQ_HOST:localhost}:${RABBITMQ_PORT:5672}
+
+logging:
+  level:
+    com.netflix.discovery: 'OFF'

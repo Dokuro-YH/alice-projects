@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+<head>
+    <title>登录</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="mx-auto" style="max-width:360px;">
+        <div class="box shadow">
+            <div class="box-body p-3 clearfix">
+                <div class="col-sm-12">
+                    <div th:if="${param.error}" class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <strong>用户名或密码错误</strong>
+                    </div>
+                    <form name="f" th:action="@{/login}" method="post">
+                        <fieldset>
+                            <legend>密码登录</legend>
+                            <div class="form-group">
+                                <input type="text" id="username" name="username" class="form-control" placeholder="用户名"
+                                       th:autofocus="true"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="password" name="password" class="form-control"
+                                       placeholder="登录密码"/>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary width-full mt-2">登录</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="box-footer p-3 clearfix">
+                <div class="col-sm-12 text-center">
+                    <a class="btn btn-primary width-full mt-2" th:href="@{/login/github}">Github登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

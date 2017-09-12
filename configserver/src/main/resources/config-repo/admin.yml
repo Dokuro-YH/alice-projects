@@ -1,0 +1,32 @@
+info.description: Admin UI
+
+server:
+  port: 9999
+
+spring:
+  boot:
+    admin:
+      routes:
+        endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
+      turbine:
+        clusters: default
+        location: turbine
+
+security:
+  user:
+    name: admin
+    password: ${ADMIN_PASSWORD:pass}
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap:
+      user.name: ${security.user.name}
+      user.password: ${security.user.password}
+  client:
+    region: default
+    registryFetchIntervalSeconds: 5
+
+logging:
+  level:
+    com.netflix.discovery: 'OFF'

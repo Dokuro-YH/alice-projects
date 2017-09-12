@@ -1,0 +1,48 @@
+info.description: configserver
+
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-repo
+  rabbitmq:
+    addresses: amqp://${RABBITMQ_HOST:localhost}:${RABBITMQ_PORT:5672}
+
+management:
+  context-path: /mgmt
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+security:
+  user:
+    password: password
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    metadataMap:
+      management.context-path: ${management.context-path}
+      user.name: user
+      user.password: password
+  client:
+    region: default
+    registryFetchIntervalSeconds: 5
+
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'DEBUG'

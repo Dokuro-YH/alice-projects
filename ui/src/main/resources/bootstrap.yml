@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: ui
+  cloud:
+    config:
+      fail-fast: true
+      uri: ${CONFIG_SERVER_URI:http://user:password@localhost:8888}

@@ -1,0 +1,80 @@
+info.description: UAA
+
+server:
+  port: 9000
+  context-path: /uaa
+
+management:
+  context-path: /mgmt
+  security:
+    enabled: false
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    homePageUrlPath: /uaa/mgmt
+    statusPageUrlPath: /uaa/mgmt/info
+    healthCheckUrlPath: /uaa/mgmt/health
+    metadataMap:
+      management.context-path: /uaa/mgmt
+  client:
+    region: default
+    registryFetchIntervalSeconds: 5
+
+spring:
+  mvc:
+    favicon:
+      enabled: false
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:test}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+  rabbitmq:
+    addresses: amqp://${RABBITMQ_HOST:localhost}:${RABBITMQ_PORT:5672}
+
+uaa:
+  clients:
+    admin:
+      secret: admin
+      scopes: uaa.admin,uaa.resource
+      grantTypes: client_credentials
+    ui:
+      secret: uisecret
+      scopes: uaa.resource
+      resourceIds: uaa,hello
+      autoApprove: true
+      redirectUris: http://localhost:8080
+      grantTypes: authorization_code,password,refresh_token
+  users:
+    admin:
+      password: admin
+      email: admin@test.org
+      phoneNumber: 13888888888
+      authorities: uaa.admin
+    user:
+      password: user
+      email: user@test.org
+      phoneNumber: 13111111111
+      authorities: uaa.user
+
+github:
+  client:
+    clientId: a720d0091e40047571c9
+    clientSecret: d599490ede7e28df4b8b1ec5fa6fa7dd9d693909
+    accessTokenUri: https://github.com/login/oauth/access_token
+    userAuthorizationUri: https://github.com/login/oauth/authorize
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://api.github.com/user
+
+logging:
+  level:
+    com.netflix.discovery: 'OFF'

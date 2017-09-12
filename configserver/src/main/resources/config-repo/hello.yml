@@ -1,0 +1,36 @@
+info.description: Hello microservice
+
+server:
+  port: 9001
+
+management:
+  security:
+    enabled: false
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+  client:
+    region: default
+    registryFetchIntervalSeconds: 5
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://${AUTHSERVER_HOST:localhost}:${AUTHSERVER_PORT:9000}/uaa/me
+
+spring:
+  rabbitmq:
+    addresses: amqp://${RABBITMQ_HOST:localhost}:${RABBITMQ_PORT:5672}
+
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
