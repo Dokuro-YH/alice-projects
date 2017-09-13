@@ -1,25 +1,29 @@
-# Alice Projects
-**A basic micro service architecture**
+Alice Projects
+==============
+A basic micro service architecture
 
-## Services
-
-## Config server
+Config server
+=============
 Centralized management configuration. [spring-cloud-config](http://cloud.spring.io/spring-cloud-config/)
 
-## Eureka server
+Eureka server
+=============
 Eureka server for [spring-cloud-netflix](https://cloud.spring.io/spring-cloud-netflix/)
 
 After running, see this url [http://localhost:8761](http://localhost:8761)
 
-## Admin UI
+Admin UI
+========
 Integrated [spring-boot-admin](http://codecentric.github.io/spring-boot-admin/1.5.4)
 
 After running, see this url [http://localhost:9999](http://localhost:9999) username: admin, password: pass
 
-## Turbine
+Turbine
+=======
 Hystrix Turbine port 8989 for [spring-admin-turbine-ui](http://codecentric.github.io/spring-boot-admin/1.5.4/#_turbine_ui_module)
 
-### UAA
+UAA
+===
 User Account and Authentication(UAA) Server
 
 | Method | Path | Description | Authority |
@@ -32,7 +36,8 @@ User Account and Authentication(UAA) Server
 | GET,POST,PUT,DELETE | /uaa/users/** | Users management endpoints | uaa.admin |
 | GET,POST,PUT,DELETE| /uaa/oauth/clients/** | Clients management endpoints | uaa.admin |
 
-### Hello
+Hello
+=====
 A sample resource server
 
 | Method | Path | Description | Authority |
@@ -40,17 +45,19 @@ A sample resource server
 | GET | /sayHello | {id:&lt;uuid&gt;, content: hello &lt;username&gt;} | authenticated |
 
 
-### Employee
+Employee
+========
 Employee management RESTful API resource server for [spring-boot-data-rest](https://docs.spring.io/spring-data/rest/docs/current/reference/html)
 
 | Method | Path | Description | Authority |
 | --- | --- | --- | --- |
 | GET | /employee | RESTful API | authenticated |
 
-### UI
+UI
+==
 react + react-router + Spring cloud netflix zuul proxy
 
-### Page Route
+#### Page Route
 | Path | Description | Authority |
 | --- | --- | --- |
 | /login | redirect uaa/oauth/authorize | any |
@@ -63,44 +70,45 @@ react + react-router + Spring cloud netflix zuul proxy
 | /api/hello/** | hello service | false |
 | /api/employee/** | employee service | true |
 
-## Quick Start
+Quick Start
+===========
 
 ### Config server[8888]
 ```
-$ cd ./configserver && mvn spring-boot:run
+$ cd ./configserver && ./mvnw spring-boot:run
 ```
 
 ### Eureka server[8761]
 ```
-$ cd ./eureka && mvn spring-boot:run
+$ cd ./eureka && ./mvnw spring-boot:run
 ```
 
 ### Admin UI[9999] (Optional)
 ```
-$ cd ./admin && mvn spring-boot:run
+$ cd ./admin && ./mvnw spring-boot:run
 ```
 
 ### Turbine[8989] (Optional)
 ```
-$ cd ./turbine && mvn spring-boot:run
+$ cd ./turbine && ./mvnw spring-boot:run
 ```
 
 ### UAA server[9000]
 ```
-$ cd ./uaa && mvn spring-boot:run
+$ cd ./uaa && ./mvnw spring-boot:run
 ```
 
 ### Hello server[9001]
 ```
-$ cd ./hello && mvn spring-boot:run
+$ cd ./hello && ./mvnw spring-boot:run
 ```
 
 ### Employee server[9002]
 ```
-$ cd ./employee && mvn spring-boot:run
+$ cd ./employee && ./mvnw spring-boot:run
 ```
 
 ### UI server[8080]
 ```
-$ cd ./ui && mvn spring-boot:run
+$ cd ./ui && ./mvnw spring-boot:run
 ```
