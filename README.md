@@ -51,7 +51,7 @@ Employee management RESTful API resource server for [spring-boot-data-rest](http
 
 | Method | Path | Description | Authority |
 | --- | --- | --- | --- |
-| GET | /employee | RESTful API | authenticated |
+| GET | /employee/** | RESTful API | authenticated |
 
 UI
 ==
