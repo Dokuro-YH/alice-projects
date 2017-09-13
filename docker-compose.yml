@@ -3,38 +3,46 @@ version: "3.1"
 services:
   rabbitmq:
     image: rabbitmq:3.6
+  mongo:
+    image: mongo:3.4
   mysql:
     image: mysql:5.6
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: test
   configserver:
-    image: alice-projects/configserver:0.0.1-SNAPSHOT
+    image: alice-projects/configserver
     environment:
       RABBITMQ_HOST: rabbitmq
   eureka:
-    image: alice-projects/eureka:0.0.1-SNAPSHOT
+    image: alice-projects/eureka
   turbine:
-    image: alice-projects/turbine:0.0.1-SNAPSHOT
+    image: alice-projects/turbine
   admin:
-    image: alice-projects/admin:0.0.1-SNAPSHOT
+    image: alice-projects/admin
     environment:
       ADMIN_PASSWORD: admin
     ports:
       - "9999:9999"
   authserver:
-    image: alice-projects/uaa:0.0.1-SNAPSHOT
+    image: alice-projects/uaa
     environment:
       MYSQL_HOST: mysql
     ports:
       - "9000:9000"
+  employee:
+    image: alice-projects/employee
+    environment:
+      MONGO_HOST: mongo
+      RABBITMQ_HOST: rabbitmq
+      AUTHSERVER_HOST: authserver
   hello:
-    image: alice-projects/hello:0.0.1-SNAPSHOT
+    image: alice-projects/hello
     environment:
       RABBITMQ_HOST: rabbitmq
       AUTHSERVER_HOST: authserver
   ui:
-    image: alice-projects/ui:0.0.1-SNAPSHOT
+    image: alice-projects/ui
     environment:
       RABBITMQ_HOST: rabbitmq
       AUTHSERVER_HOST: authserver

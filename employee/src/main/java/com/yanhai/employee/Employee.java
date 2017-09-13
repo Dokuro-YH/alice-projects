@@ -5,6 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
 
+/**
+ * @author yanhai
+ */
 @Data
 @Document
 public class Employee {
@@ -13,6 +16,8 @@ public class Employee {
     private String id;
 
     private String name;
+
+    private Gender gender;
 
     private Integer age;
 
