@@ -1,29 +1,31 @@
-Alice Projects
-==============
+# Alice Projects
+
 A basic micro service architecture
 
-Config server
-=============
+## Projects
+
+### Config server
+
 Centralized management configuration. [spring-cloud-config](http://cloud.spring.io/spring-cloud-config/)
 
-Eureka server
-=============
+### Eureka server
+
 Eureka server for [spring-cloud-netflix](https://cloud.spring.io/spring-cloud-netflix/)
 
 After running, see this url [http://localhost:8761](http://localhost:8761)
 
-Admin UI
-========
+### Admin UI
+
 Integrated [spring-boot-admin](http://codecentric.github.io/spring-boot-admin/1.5.4)
 
 After running, see this url [http://localhost:9999](http://localhost:9999) username: admin, password: pass
 
-Turbine
-=======
+### Turbine
+
 Hystrix Turbine port 8989 for [spring-admin-turbine-ui](http://codecentric.github.io/spring-boot-admin/1.5.4/#_turbine_ui_module)
 
-UAA
-===
+### UAA
+
 User Account and Authentication(UAA) Server
 
 | Method | Path | Description | Authority |
@@ -33,10 +35,10 @@ User Account and Authentication(UAA) Server
 | GET | /uaa/oauth/authorize | Authorization uri | any |
 | GET | /uaa/me | User info api | authenticated |
 | GET,POST,PUT,DELETE | /uaa/users/** | Users management endpoints | uaa.admin |
-| GET,POST,PUT,DELETE| /uaa/oauth/clients/** | Clients management endpoints | uaa.admin |
+| GET,POST,PUT,DELETE | /uaa/oauth/clients/** | Clients management endpoints | uaa.admin |
 
-Hello
-=====
+### Hello
+
 A sample resource server
 
 | Method | Path | Description | Authority |
@@ -44,16 +46,16 @@ A sample resource server
 | GET | /sayHello | {id:&lt;uuid&gt;, content: hello &lt;username&gt;} | authenticated |
 
 
-Employee
-========
+### Employee
+
 Employee management RESTful API resource server for [spring-boot-data-rest](https://docs.spring.io/spring-data/rest/docs/current/reference/html)
 
 | Method | Path | Description | Authority |
 | --- | --- | --- | --- |
 | GET | /employee/** | RESTful API | authenticated |
 
-UI
-==
+### UI
+
 react + react-router + Spring cloud netflix zuul proxy
 
 #### Page Route
@@ -69,8 +71,12 @@ react + react-router + Spring cloud netflix zuul proxy
 | /api/hello/** | hello service | false |
 | /api/employee/** | employee service | true |
 
-Quick Start
-===========
+## Quick Start
+
+Requirements:
+* Java 8
+* Mysql 5.6 username:root, password:root, database:test
+* MongoDB 3.4
 
 ### Config server[8888]
 ```
