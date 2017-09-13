@@ -31,7 +31,6 @@ User Account and Authentication(UAA) Server
 | GET | /uaa/login | Login page | any |
 | GET | /uaa/login/github | Github login | any |
 | GET | /uaa/oauth/authorize | Authorization page | any |
-| GET | /uaa/oauth/confirm_access | Access confirmation | any |
 | GET | /uaa/me | User info api | authenticated |
 | GET,POST,PUT,DELETE | /uaa/users/** | Users management endpoints | uaa.admin |
 | GET,POST,PUT,DELETE| /uaa/oauth/clients/** | Clients management endpoints | uaa.admin |
